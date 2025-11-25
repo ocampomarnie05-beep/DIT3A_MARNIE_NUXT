@@ -1,0 +1,33 @@
+<template>
+  <v-card
+    title="Nutrition"
+    flat
+  >
+    <template v-slot:text>
+      <v-text-field
+        v-model="search"
+        label="Search"
+        prepend-inner-icon="mdi-magnify"
+        variant="outlined"
+        hide-details
+        single-line
+      ></v-text-field>
+    </template>
+
+    <v-data-table
+      :headers="headers"
+      :items="desserts"
+      :search="search"
+    ></v-data-table>
+  </v-card>
+</template>
+<script setup>
+
+    const { data: category } = await useFetch ('https://localhost:1337/api/categories');
+  const search = ref('')
+  const headers = [
+    { key: 'category_name', title: 'Category' },
+    { key: 'description_name', title: 'Description' },
+  ]
+
+</script>
