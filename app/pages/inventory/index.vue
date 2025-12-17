@@ -1,6 +1,6 @@
 <template>
   <v-card
-    title="Nutrition"
+    title="Inventory"
     flat
   >
     <template v-slot:text>
@@ -16,22 +16,26 @@
 
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="inventory.data"
       :search="search"
     ></v-data-table>
   </v-card>
 </template>
 <script setup>
-  import { ref } from 'vue'
-    const { data: inventory } = await useFetch ('https://localhost:1337/api/inventories');
+ const { data: inventory} = await useFetch('http://localhost:1337/api/inventories');
+
   const search = ref('')
   const headers = [
-
-    { key: 'product_name', title: 'Product' },
+   
+    { key: 'item_id', title: 'Item_id' },
+    { key: 'product_name', title: 'Product_name' },
     { key: 'product_description', title: 'Description' },
-    { key: 'Quantity', title: 'Quantity'},
-    { key: 'protein', title: 'Protein (g)' },
-    { key: 'iron', title: 'Iron (%)' },
+    { key: 'quantity', title: 'Quantity' },
+    { key: 'unit', title: 'Unit' },
+    { key: 'condition', title: 'Condition' },
+    { key: 'location', title: 'Location' },
+    { key: 'acquisition_date', title: 'Acquisition_Date' },
   ]
-
+  
+  
 </script>

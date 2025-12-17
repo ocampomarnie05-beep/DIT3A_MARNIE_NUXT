@@ -1,6 +1,6 @@
 <template>
   <v-card
-    title="Nutrition"
+    title="Category"
     flat
   >
     <template v-slot:text>
@@ -14,20 +14,23 @@
       ></v-text-field>
     </template>
 
-    <v-data-table
+    <v-data-table   
       :headers="headers"
-      :items="desserts"
+      :items="category.data"
       :search="search"
     ></v-data-table>
   </v-card>
 </template>
 <script setup>
+  const { data: items, pending, error, refresh } = await useFetch('http://localhost:1337/api/categories');
 
-    const { data: category } = await useFetch ('https://localhost:1337/api/categories');
   const search = ref('')
   const headers = [
-    { key: 'category_name', title: 'Category' },
-    { key: 'description_name', title: 'Description' },
+   
+    { key: 'category_id', title: 'Category_id' },
+    { key: 'category_name', title: 'Category_name' },
+    { key: 'description', title: 'Description' },
+    { key: 'date_created', title: 'Date_created' },
   ]
-
+  
 </script>
